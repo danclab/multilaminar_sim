@@ -9,13 +9,7 @@
 # Jobs to run; each element corresponds to a subject.
 # Only run n at a time with (%n) at the end of the command!
 # Counting the python way!
-# SBATCH --array=0-29130
-# SBATCH --array=0-999%200
-# SBATCH --array=1000-1999%200
-# SBATCH --array=2000-2999%200
-# SBATCH --array=3000-3999%200
-# SBATCH --array=4000-4999%200
-#SBATCH --array=5000-5999%200
+#SBATCH --array=0-29130%200
 
 # ----- #
 # Computational resources.
@@ -53,5 +47,5 @@ conda activate lameg
 # ----- #
 # Run script.
 # Standard output and standard error are NOT redirected to the same file.
-python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_25_whole_brain_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_wb_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_wb_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
+python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_05_whole_brain_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_wb_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_wb_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
 

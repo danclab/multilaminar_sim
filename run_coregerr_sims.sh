@@ -9,7 +9,6 @@
 # Jobs to run; each element corresponds to a subject.
 # Only run n at a time with (%n) at the end of the command!
 # Counting the python way!
-# SBATCH --array=0-2099%150
 #SBATCH --array=0-699%200
 
 
@@ -49,5 +48,5 @@ conda activate lameg
 # ----- #
 # Run script.
 # Standard output and standard error are NOT redirected to the same file.
-python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_22_coreg_error_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_coregerr_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_coregerr_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
+python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_03_coreg_error_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_coregerr_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_coregerr_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
 

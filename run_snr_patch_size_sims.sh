@@ -2,19 +2,18 @@
 
 # ----- #
 # Job name
-#SBATCH --job-name=snr_sim
+#SBATCH --job-name=snr_patch_size_sim
 
 
 # ----- #
 # Jobs to run; each element corresponds to a subject.
 # Only run n at a time with (%n) at the end of the command!
 # Counting the python way!
-#SBATCH --array=0-2099%150
-
+#SBATCH --array=0-1599%200
 
 # ----- #
 # Computational resources.
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=4
 #SBATCH --mem=20G
 
 # Instead of specifying a nodelist which will ask for all the nodes to be
@@ -26,7 +25,7 @@
 
 # ----- #
 # Task time limit (D-HH:MM:SS)
-#SBATCH --time=7-00:00:00
+#SBATCH --time=1-00:00:00
 
 
 # ----- #
@@ -48,5 +47,5 @@ conda activate lameg
 # ----- #
 # Run script.
 # Standard output and standard error are NOT redirected to the same file.
-python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_02_snr_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_snr_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_snr_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
+python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_08_snr_patch_size_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_snr_patch_size_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_snr_patch_size_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
 

@@ -9,8 +9,7 @@
 # Jobs to run; each element corresponds to a subject.
 # Only run n at a time with (%n) at the end of the command!
 # Counting the python way!
-# SBATCH --array=0-4899
-#SBATCH --array=4000-4899%60
+#SBATCH --array=0-4899%60
 
 
 # ----- #
@@ -49,5 +48,5 @@ conda activate lameg
 # ----- #
 # Run script.
 # Standard output and standard error are NOT redirected to the same file.
-python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_26_column_orientation_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_ori_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_ori_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
+python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_06_column_orientation_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_ori_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_ori_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
 

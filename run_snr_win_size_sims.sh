@@ -2,20 +2,19 @@
 
 # ----- #
 # Job name
-#SBATCH --job-name=snr_sim
+#SBATCH --job-name=snr_win_size_sim
 
 
 # ----- #
 # Jobs to run; each element corresponds to a subject.
 # Only run n at a time with (%n) at the end of the command!
 # Counting the python way!
-#SBATCH --array=0-2099%150
-
+#SBATCH --array=0-2399%200
 
 # ----- #
 # Computational resources.
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=20G
+#SBATCH --mem=28G
 
 # Instead of specifying a nodelist which will ask for all the nodes to be
 # available for each job, exclude the nodes that are not contained in the
@@ -41,12 +40,12 @@
 module add Programming_Languages/anaconda/3.11
 
 # Activation of virtual python environment.
-conda activate lameg
+conda activate lameg_0.0.5
 
 #SBATCH --licenses=sps
 
 # ----- #
 # Run script.
 # Standard output and standard error are NOT redirected to the same file.
-python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_02_snr_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_snr_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_snr_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
+python -u /pbs/home/b/bonaiuto/laminar_erf/pipeline_09_snr_win_size_simulations.py > /sps/isc/bonaiuto/laminar_erf/output/output_snr_win_size_$SLURM_ARRAY_TASK_ID.txt 2> /sps/isc/bonaiuto/laminar_erf/output/error_snr_win_size_$SLURM_ARRAY_TASK_ID.txt ${SLURM_ARRAY_TASK_ID}
 
