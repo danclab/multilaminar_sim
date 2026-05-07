@@ -28,7 +28,7 @@
 
 # ----- #
 # Task time limit (D-HH:MM:SS)
-#SBATCH --time=7-00:00:00
+#SBATCH --time=1-00:00:00
 
 
 # ----- #
@@ -36,6 +36,8 @@
 # Currently skipped and instead used directly when calling the python script.
 # --output=fichier_de_sortie${SLURM_ARRAY_TASK_ID}.txt
 # --error=sortie_erreur.err
+
+#SBATCH --licenses=sps
 
 
 # ----- #
@@ -45,7 +47,17 @@ module add Programming_Languages/anaconda/3.11
 # Activation of virtual python environment.
 conda activate lameg
 
-#SBATCH --licenses=sps
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+#export JAVA_TOOL_OPTIONS="-Djava.awt.headless=true"
+
+export FONTCONFIG_PATH=/etc/fonts
+export FONTCONFIG_FILE=/etc/fonts/fonts.conf
+export XDG_CACHE_HOME=/tmp/$USER/$SLURM_JOB_ID/fontcache
+mkdir -p "$XDG_CACHE_HOME"
+fc-cache -r >/dev/null 2>&1
 
 # ----- #
 # Run script.
