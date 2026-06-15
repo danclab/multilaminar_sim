@@ -1,5 +1,7 @@
+function vba_motor_epoch_mefI(patch_size)
 
-load('./output/mefI_aligned_all_layer_F.mat')
+in_fname=sprintf('mefI_aligned_all_layer_F_patch_size_%0.1f.mat', patch_size);
+load(fullfile('./output', in_fname));
 
 F = all_layer_F
 
@@ -16,7 +18,7 @@ options = struct();
 options.niter = 100
 options.DisplayWin = 0; 
 options.families = {[1, 2, 3], [4], [5, 6]} ;
-nSubjects   = size(F,1);   % 8 in ERF
+nSubjects   = size(F,1);
 nModels     = size(F,2);   % 6 layers
 nTimepoints = size(F,3);   % times
 
@@ -61,8 +63,8 @@ for t = 1:nTimepoints
 end
 
 
-save('./output/mefI_aligned_overtime_family.mat', 'bestModelOverTime', 'time', 'p_H0', 'EP', 'famEP');
-
+out_fname=sprintf('mefI_aligned_overtime_family_patch_size_%0.1f.mat', patch_size);
+save(fullfile('./output', out_fname), 'bestModelOverTime', 'time', 'p_H0', 'EP', 'famEP');
 
 %quick check 
 
